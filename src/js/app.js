@@ -194,6 +194,58 @@ var app = angular.module('app', ['ngRoute', 'ngCookies', 'ngAnimate', 'ngSanitiz
                     }]
                 }
             })
+            .when('/snis', {
+                templateUrl: 'html/snis/index.html',
+                controller: 'SNISController',
+                resolve: {
+                    isAppReady: isAppReady
+                }
+            })
+            .when('/snis/add', {
+                templateUrl: 'html/snis/form.html',
+                controller: 'SNIController',
+                resolve: {
+                    isAppReady: isAppReady,
+                    sni: function() {return {}}
+                }
+            })
+            .when('/snis/:id', {
+                templateUrl: 'html/snis/form.html',
+                controller: 'SNIController',
+                resolve: {
+                    isAppReady: isAppReady,
+                    sni: ['Kong', '$route', function (Kong, $route) {
+                        var id = $route.current.params.id;
+                        return Kong.get('/snis/' + id)
+                    }]
+                }
+            })
+            .when('/certificates', {
+                templateUrl: 'html/certificates/index.html',
+                controller: 'CertificatesController',
+                resolve: {
+                    isAppReady: isAppReady
+                }
+            })
+            .when('/certificates/add', {
+                templateUrl: 'html/certificates/form.html',
+                controller: 'CertificateController',
+                resolve: {
+                    isAppReady: isAppReady,
+                    certificate: function() {return {}}
+                }
+            })
+            .when('/certificates/:id', {
+                templateUrl: 'html/certificates/form.html',
+                controller: 'CertificateController',
+                resolve: {
+                    isAppReady: isAppReady,
+                    certificate: ['Kong', '$route', function (Kong, $route) {
+                        var id = $route.current.params.id;
+                        return Kong.get('/certificates/' + id)
+                    }]
+                }
+            })
             .otherwise({redirectTo: '/'});
     }])
     .run(['$rootScope', 'Kong', '$location', function($rootScope, Kong, $location) {

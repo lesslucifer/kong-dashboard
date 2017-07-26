@@ -1,9 +1,9 @@
 <div class="container" infinite-scroll="loadMore()" infinite-scroll-distance="5" infinite-scroll-use-document-bottom="true">
-    <a href="#/upstreams/add" class="btn-floating btn-large waves-effect waves-light right" ng-show="upstreams.length >= 1">
+    <a href="#/snis/add" class="btn-floating btn-large waves-effect waves-light right" ng-show="snis.length >= 1">
         <i class="material-icons">add</i>
     </a>
 
-    <h3 class="header">Upstreams</h3>
+    <h3 class="header">snis</h3>
 
     <p class="flow-text center" ng-show="total === null" style="margin-top:50px;">
         <app-loader></app-loader>
@@ -11,12 +11,12 @@
 
     <div class ng-show="total === 0">
         <p class="flow-text center">
-            You haven't created any Upstream in Kong yet.
+            You haven't created any SNI in Kong yet.
         </p>
         <p class="center">
-            <a href="#/upstreams/add" class="waves-effect waves-light btn">
+            <a href="#/snis/add" class="waves-effect waves-light btn">
                 <i class="material-icons left">add_box</i>
-                Add Upstream
+                Add Sni
             </a>
         </p>
     </div>
@@ -25,25 +25,23 @@
         <thead>
         <tr>
             <th>Name</th>
-            <th>Slots</th>
             <th>Created</th>
             <th></th>
         </tr>
         </thead>
 
         <tbody>
-        <tr ng-repeat="upstream in upstreams">
-            <td>{{upstream.name}}</td>
-            <td>{{upstream.slots}}</td>
-            <td>{{upstream.created_at | date}}</td>
+        <tr ng-repeat="sni in snis">
+            <td>{{sni.name}}</td>
+            <td>{{sni.created_at | date}}</td>
             <td class="right">
-                <a class="btn-floating waves-effect waves-light" href="#/upstreams/{{upstream.id}}">
+                <a class="btn-floating waves-effect waves-light" href="#/snis/{{sni.id}}">
                     <i class="material-icons">mode_edit</i>
                 </a>
-                <a class="btn-floating waves-effect waves-light blue modal-trigger" href="#/upstreams/{{upstream.id}}/targets">
+                <a class="btn-floating waves-effect waves-light blue" href="#/certificates">
                     <i class="material-icons">group_work</i>
                 </a>
-                <a class="btn-floating waves-effect waves-light red modal-trigger" ng-click="showDeleteModal(upstream.name, upstream.id)">
+                <a class="btn-floating waves-effect waves-light red modal-trigger" ng-click="showDeleteModal(sni.name, sni.id)">
                     <i class="material-icons">delete</i>
                 </a>
             </td>
@@ -53,9 +51,9 @@
 </div>
 
 <!-- Modal Structure -->
-<div id="deleteUpstream" class="modal">
+<div id="deleteSni" class="modal">
     <div class="modal-content">
-        <h5>Do you really want to delete the Upstream "{{current.name}}"?</h5>
+        <h5>Do you really want to delete the SNI "{{current.name}}"?</h5>
     </div>
     <div class="modal-footer">
         <a class="waves-effect waves-green btn" ng-click="abortDelete()">Noooooo!</a>

@@ -1,0 +1,50 @@
+<div class="container">
+    <h3 class="header">{{title}}</h3>
+
+    <div class="row">
+        <div class="col s5">
+            <div class="card-panel teal">
+                <p class="white-text">
+                    The Certificate object of SNI
+                </p>
+
+                <p class="white-text">
+                    Blah blah
+                </p>
+                <p class="white-text">
+                    Checkout <a href="https://getkong.org/docs/admin-api/#add-certificate" target="_blank">Kong documentation</a> for the meaning of these parameters.
+                </p>
+            </div>
+        </div>
+        <form name="addCertificate" class="col s7" novalidate ng-submit="save()">
+            <div class="row">
+                <div class="input-field col s12" ng-show="isAdd()">
+                    <input id="id" ng-model="certificate.id" type="text" class="validate" ng-class="{invalid: error.id}">
+                    <label for="id" ng-class="{active: certificate.id}">ID</label>
+                    <app-field-error error="error.id"></app-field-error>
+                </div>
+                <div class="input-field col s12">
+                    <textarea id="cert" ng-model="certificate.cert" type="text" class="validate" ng-class="{invalid: error.cert}"></textarea>
+                    <label for="cert" ng-class="{active: certificate.cert}">Cert</label>
+                    <app-field-error error="error.cert"></app-field-error>
+                </div>
+                <div class="input-field col s12">
+                    <textarea id="key" ng-model="certificate.key" type="text" class="validate" ng-class="{invalid: error.key}"></textarea>
+                    <label for="key" ng-class="{active: certificate.key}">Key</label>
+                    <app-field-error error="error.key"></app-field-error>
+                </div>
+                <div class="input-field col s12" ng-show="isAdd()">
+                    <input id="snis" ng-model="certificate.snis" type="text" class="validate" ng-class="{invalid: error.snis}">
+                    <label for="snis" ng-class="{active: certificate.snis}">SNIs</label>
+                    <app-field-error error="error.key"></app-field-error>
+                </div>
+                <div class="input-field col s12">
+                    <button type="submit" class="waves-effect waves-light btn right">
+                        {{action}}
+                    </button>
+                </div>
+            </div>
+            <input type="hidden" ng-model="certificate.id" value="{{certificate.id}}" />
+        </form>
+    </div>
+</div>
