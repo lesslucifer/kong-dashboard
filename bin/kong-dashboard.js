@@ -33,7 +33,7 @@ if (argv._[0] === 'build') {
 
 // start server
 if (argv._[0] === 'start') {
-    var port = argv.p ? argv.p : 4000;
+    var port = argv.p ? argv.p : 8080;
     var auth = argv.a;
 
     // launch server
