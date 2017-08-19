@@ -6,7 +6,7 @@ angular.module('app').controller("TargetsController", ["$scope", "Kong", "owner"
 
     var loaded_pages = [];
     $scope.loadMore = function() {
-        var page = '/upstreams/' + owner.id + '/targets/active?';
+        var page = '/upstreams/' + owner.id + '/targets?';
         if ($scope.offset) {
             page += 'offset=' + $scope.offset + '&';
         }
